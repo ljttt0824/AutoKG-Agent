@@ -1,4 +1,4 @@
-# 通用领域知识图谱多 Agent 系统
+# AutoKG-Agent / 通用领域知识图谱多 Agent 系统
 
 这是在 Coze Coding 环境中实现的 LangGraph 版本。它把用户目标、领域资料和下游用途交给 Planner 生成本次任务的领域模式，再由 Worker 构图、Critic 评估。教育课程是首个领域包，后续案例覆盖电商推荐、实验复盘和 PMO 岗位百科。
 
