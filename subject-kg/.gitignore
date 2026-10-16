@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+output/
+models/
+data/slides/*
+!data/slides/.gitkeep
+data/processed/

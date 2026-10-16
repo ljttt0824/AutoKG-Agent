@@ -1,0 +1,1 @@
+Computer networks exchange data using layered protocols. The Internet Protocol (IP) routes datagrams between networks. The Transmission Control Protocol (TCP) uses IP to carry an ordered byte stream and retransmits data when needed. User Datagram Protocol (UDP) also uses IP but provides datagram delivery without TCP's retransmission behavior.

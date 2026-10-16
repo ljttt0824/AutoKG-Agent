@@ -1,0 +1,9 @@
+{
+  "user_query": "Build a computer networking knowledge graph for course review. Identify protocol entities, explain their roles, preserve source context, and distinguish transport behavior.",
+  "files": [
+    {
+      "url": "examples/sample_network_notes.txt",
+      "file_type": "document"
+    }
+  ]
+}
