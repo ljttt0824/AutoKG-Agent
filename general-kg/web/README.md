@@ -37,4 +37,12 @@ npm run preview
 
 ## 发布
 
-`.github/workflows/pages.yml` 将 `VITE_STATIC_DEMO=true` 的前端构建产物发布到 GitHub Pages。构建文件位于 `dist/`，不会上传本地后端、`.env`、课件或截图。
+当前 GitHub Pages 使用 `gh-pages` 分支根目录中的静态文件。要更新页面，在本目录构建后，将 `dist/` 中的文件提交到该分支根目录：
+
+```powershell
+$env:VITE_STATIC_DEMO = "true"
+npm ci
+npm run build
+```
+
+构建文件只包含前端 bundle 和公开案例 fixture，不会包含本地后端、`.env`、课件或截图。仓库 Pages 设置需保持为 `gh-pages` 分支的根目录。
