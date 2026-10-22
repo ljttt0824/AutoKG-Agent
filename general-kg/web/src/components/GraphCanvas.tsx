@@ -90,9 +90,10 @@ export default function GraphCanvas({ nodes, edges, selection, onSelect }: Graph
         name: "cose",
         animate: false,
         padding: 56,
-        nodeRepulsion: 11000,
-        idealEdgeLength: 145,
-        gravity: 0.18,
+        nodeRepulsion: 16000,
+        idealEdgeLength: 170,
+        nodeOverlap: 24,
+        gravity: 0.14,
         randomize: true,
       },
       minZoom: 0.35,
@@ -134,7 +135,7 @@ export default function GraphCanvas({ nodes, edges, selection, onSelect }: Graph
   };
 
   const fit = () => cyRef.current?.fit(undefined, 38);
-  const relayout = () => cyRef.current?.layout({ name: "cose", animate: true, padding: 58, nodeRepulsion: 11000, idealEdgeLength: 145, gravity: 0.18 }).run();
+  const relayout = () => cyRef.current?.layout({ name: "cose", animate: true, padding: 64, nodeRepulsion: 16000, idealEdgeLength: 170, nodeOverlap: 24, gravity: 0.14 }).run();
 
   return (
     <div className="graph-canvas" ref={containerRef} aria-label="交互式知识图谱画布">
