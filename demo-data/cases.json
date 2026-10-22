@@ -1,0 +1,147 @@
+[
+  {
+    "id": "ecommerce-recommendation",
+    "name": "电商新客推荐",
+    "domain": "电子商务",
+    "description": "将新客偏好、商品属性、使用场景与推荐理由串成可追溯关系。",
+    "provenance": "演示图谱为重制样例，不含原始业务数据。",
+    "graph": {
+      "nodes": [
+        {"id":"u-new","label":"新客用户","type":"用户群体","description":"首次访问且尚未完成首购的用户分群。","confidence":0.96,"properties":{"生命周期":"新客","样例人数":128},"evidence_ids":["E-EC-01"]},
+        {"id":"b-browse","label":"浏览行为","type":"用户行为","description":"用户查看商品详情页的行为。","confidence":0.94,"properties":{"事件":"view_item","窗口":"近 7 天"},"evidence_ids":["E-EC-01"]},
+        {"id":"b-fav","label":"收藏行为","type":"用户行为","description":"用户将商品加入收藏列表。","confidence":0.92,"properties":{"事件":"favorite_item","窗口":"近 7 天"},"evidence_ids":["E-EC-02"]},
+        {"id":"s-commute","label":"通勤场景","type":"使用场景","description":"移动通勤期间的听音需求。","confidence":0.9,"properties":{"场景标签":"commute","噪声环境":"复杂"},"evidence_ids":["E-EC-03"]},
+        {"id":"p-headphones","label":"轻量降噪耳机","type":"商品","description":"面向日常通勤的无线耳机示例商品。","confidence":0.95,"properties":{"价格区间":"500-800 元","连接方式":"蓝牙"},"evidence_ids":["E-EC-03"]},
+        {"id":"c-audio","label":"无线音频","type":"商品类目","description":"耳机与便携音频设备所属类目。","confidence":0.98,"properties":{"类目编码":"AUDIO-WL"},"evidence_ids":["E-EC-03"]},
+        {"id":"f-anc","label":"主动降噪","type":"商品属性","description":"降低持续环境噪声的功能属性。","confidence":0.93,"properties":{"属性值":"支持","属性组":"音频功能"},"evidence_ids":["E-EC-03"]},
+        {"id":"f-light","label":"轻量设计","type":"商品属性","description":"便于长时间佩戴和携带的设计特点。","confidence":0.9,"properties":{"重量等级":"轻量"},"evidence_ids":["E-EC-03"]},
+        {"id":"i-budget","label":"价格敏感","type":"购买意向","description":"优先比较价格与优惠信息的偏好。","confidence":0.87,"properties":{"意向来源":"行为归纳","置信区间":"中高"},"evidence_ids":["E-EC-02"]},
+        {"id":"promo-coupon","label":"新客优惠券","type":"营销权益","description":"针对首次购买用户的示例优惠权益。","confidence":0.91,"properties":{"适用人群":"新客","门槛":"示例规则"},"evidence_ids":["E-EC-02"]},
+        {"id":"r-recommend","label":"推荐理由","type":"推荐策略","description":"组合场景、功能和价格偏好生成的解释。","confidence":0.89,"properties":{"策略":"场景 + 属性 + 意向","需展示来源":true},"evidence_ids":["E-EC-01","E-EC-03"]},
+        {"id":"e-first-order","label":"首购转化","type":"业务事件","description":"新客完成第一笔有效订单。","confidence":0.88,"properties":{"事件":"first_order","用途":"效果观测"},"evidence_ids":["E-EC-01"]}
+      ],
+      "edges": [
+        {"id":"ec-r1","source":"u-new","target":"b-browse","label":"产生","confidence":0.94,"evidence_ids":["E-EC-01"]},
+        {"id":"ec-r2","source":"u-new","target":"b-fav","label":"产生","confidence":0.91,"evidence_ids":["E-EC-02"]},
+        {"id":"ec-r3","source":"b-browse","target":"p-headphones","label":"查看","confidence":0.95,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r4","source":"b-fav","target":"p-headphones","label":"收藏","confidence":0.92,"evidence_ids":["E-EC-02"]},
+        {"id":"ec-r5","source":"p-headphones","target":"c-audio","label":"属于类目","confidence":0.99,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r6","source":"p-headphones","target":"f-anc","label":"具备属性","confidence":0.96,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r7","source":"p-headphones","target":"f-light","label":"具备属性","confidence":0.93,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r8","source":"u-new","target":"i-budget","label":"表现出","confidence":0.87,"evidence_ids":["E-EC-02"]},
+        {"id":"ec-r9","source":"i-budget","target":"promo-coupon","label":"可匹配","confidence":0.9,"evidence_ids":["E-EC-02"]},
+        {"id":"ec-r10","source":"s-commute","target":"f-anc","label":"需求对应","confidence":0.91,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r11","source":"r-recommend","target":"p-headphones","label":"推荐","confidence":0.9,"evidence_ids":["E-EC-01","E-EC-03"]},
+        {"id":"ec-r12","source":"r-recommend","target":"s-commute","label":"解释场景","confidence":0.88,"evidence_ids":["E-EC-03"]},
+        {"id":"ec-r13","source":"r-recommend","target":"i-budget","label":"解释偏好","confidence":0.86,"evidence_ids":["E-EC-02"]},
+        {"id":"ec-r14","source":"u-new","target":"e-first-order","label":"目标事件","confidence":0.85,"evidence_ids":["E-EC-01"]}
+      ]
+    },
+    "evidence": [
+      {"id":"E-EC-01","title":"新客购物偏好摘要","source":"合成演示材料","locator":"第 1 段","excerpt":"新客推荐应结合近期浏览、收藏和首购状态，解释推荐理由并观察首购转化。","method":"本地示例"},
+      {"id":"E-EC-02","title":"行为与权益规则","source":"合成演示材料","locator":"第 2 段","excerpt":"收藏与优惠权益用于表达购买意向；价格敏感标签需作为推断结果保留置信度。","method":"本地示例"},
+      {"id":"E-EC-03","title":"示例商品目录","source":"合成演示材料","locator":"目录项 01","excerpt":"轻量降噪耳机属于无线音频类目，面向移动通勤场景，提供主动降噪功能。","method":"本地示例"}
+    ],
+    "quality": {
+      "checks": [
+        {"name":"节点证据绑定","value":"12 / 12","state":"pass","detail":"演示节点均引用至少一条证据记录。"},
+        {"name":"关系证据绑定","value":"14 / 14","state":"pass","detail":"关系来源 ID 可在本案例证据账本中解析。"},
+        {"name":"孤立节点","value":"0","state":"pass","detail":"当前展示子图中的节点均参与至少一条关系。"},
+        {"name":"来源核验","value":"待人工复核","state":"review","detail":"示例材料为合成内容，不用于评估真实业务准确率。"}
+      ],
+      "notes": ["历史 Critic 分数是单次模型评审信号，不等同于人工金标准准确率。", "当前画布展示的是为演示重制的子图，不是原始业务数据。"]
+    },
+    "history": {"nodes":27,"edges":40,"critic_score":0.86,"decision":"conditional_pass","label":"项目公开记录中的历史单次运行"}
+  },
+  {
+    "id": "experiment-retrospective",
+    "name": "实验复盘知识库",
+    "domain": "实验管理",
+    "description": "连接实验阶段、观察结果、问题成因与改进动作，保留复盘依据。",
+    "provenance": "演示图谱为重制样例，不含原始业务数据。",
+    "graph": {
+      "nodes": [
+        {"id":"ex-project","label":"实验 A","type":"实验项目","description":"用于展示复盘关系的虚构实验项目。","confidence":0.96,"properties":{"状态":"已复盘","周期":"示例"},"evidence_ids":["E-EX-01"]},
+        {"id":"ex-design","label":"实验设计","type":"实验阶段","description":"明确假设、变量和样本方案的阶段。","confidence":0.94,"properties":{"阶段序号":1},"evidence_ids":["E-EX-01"]},
+        {"id":"ex-sample","label":"样本偏差","type":"问题","description":"样本构成与目标总体存在差异。","confidence":0.91,"properties":{"严重度":"中"},"evidence_ids":["E-EX-02"]},
+        {"id":"ex-cause","label":"抽样不均衡","type":"原因","description":"不同分层抽取比例不一致造成的偏差。","confidence":0.89,"properties":{"类别":"方法问题"},"evidence_ids":["E-EX-02"]},
+        {"id":"ex-effect","label":"结论可信度下降","type":"结果","description":"样本偏差会削弱对总体的解释能力。","confidence":0.9,"properties":{"影响":"外部效度"},"evidence_ids":["E-EX-02"]},
+        {"id":"ex-action","label":"分层抽样","type":"改进动作","description":"按关键人群分层后控制样本配比。","confidence":0.93,"properties":{"负责人":"实验负责人","状态":"建议采纳"},"evidence_ids":["E-EX-03"]},
+        {"id":"ex-record","label":"复盘记录","type":"资料","description":"记录观察、判断、证据和后续动作。","confidence":0.97,"properties":{"模板版本":"示例 v1"},"evidence_ids":["E-EX-01"]},
+        {"id":"ex-review","label":"数据复核","type":"验证动作","description":"抽查分层统计与样本来源。","confidence":0.88,"properties":{"频率":"每轮实验"},"evidence_ids":["E-EX-03"]},
+        {"id":"ex-hypothesis","label":"假设检验","type":"实验活动","description":"依据观察数据评估预先提出的假设。","confidence":0.9,"properties":{"需预注册":true},"evidence_ids":["E-EX-01"]}
+      ],
+      "edges": [
+        {"id":"ex-r1","source":"ex-project","target":"ex-design","label":"包含阶段","confidence":0.98,"evidence_ids":["E-EX-01"]},
+        {"id":"ex-r2","source":"ex-project","target":"ex-record","label":"沉淀为","confidence":0.9,"evidence_ids":["E-EX-01"]},
+        {"id":"ex-r3","source":"ex-design","target":"ex-sample","label":"发现问题","confidence":0.91,"evidence_ids":["E-EX-02"]},
+        {"id":"ex-r4","source":"ex-sample","target":"ex-cause","label":"可能由…导致","confidence":0.88,"evidence_ids":["E-EX-02"]},
+        {"id":"ex-r5","source":"ex-cause","target":"ex-effect","label":"影响","confidence":0.91,"evidence_ids":["E-EX-02"]},
+        {"id":"ex-r6","source":"ex-action","target":"ex-cause","label":"缓解","confidence":0.93,"evidence_ids":["E-EX-03"]},
+        {"id":"ex-r7","source":"ex-review","target":"ex-action","label":"验证执行","confidence":0.86,"evidence_ids":["E-EX-03"]},
+        {"id":"ex-r8","source":"ex-record","target":"ex-hypothesis","label":"记录结论","confidence":0.9,"evidence_ids":["E-EX-01"]},
+        {"id":"ex-r9","source":"ex-review","target":"ex-sample","label":"复核","confidence":0.92,"evidence_ids":["E-EX-02"]}
+      ]
+    },
+    "evidence": [
+      {"id":"E-EX-01","title":"实验计划摘要","source":"合成演示材料","locator":"设计说明","excerpt":"实验开始前记录假设、关键变量、样本方案和预期观察指标。","method":"本地示例"},
+      {"id":"E-EX-02","title":"复盘问题摘要","source":"合成演示材料","locator":"复盘问题 01","excerpt":"分层样本比例与目标人群不一致，可能影响结果外推，需要核对抽样过程。","method":"本地示例"},
+      {"id":"E-EX-03","title":"改进行动清单","source":"合成演示材料","locator":"行动项 02","excerpt":"下一轮按关键属性执行分层抽样，并在结果汇总前完成数据复核。","method":"本地示例"}
+    ],
+    "quality": {
+      "checks": [
+        {"name":"节点证据绑定","value":"9 / 9","state":"pass","detail":"演示节点均能回溯到案例材料。"},
+        {"name":"关系证据绑定","value":"9 / 9","state":"pass","detail":"每条因果或改进关系均保留依据。"},
+        {"name":"改进闭环","value":"已连接","state":"pass","detail":"问题、原因、行动和复核动作存在关联。"},
+        {"name":"来源核验","value":"待人工复核","state":"review","detail":"示例材料为合成内容，不用于评估真实业务准确率。"}
+      ],
+      "notes": ["历史 Critic 分数是单次模型评审信号，不等同于人工金标准准确率。", "当前画布展示的是为演示重制的子图，不是原始业务数据。"]
+    },
+    "history": {"nodes":44,"edges":31,"critic_score":0.8,"decision":"conditional_pass","label":"项目公开记录中的历史单次运行"}
+  },
+  {
+    "id": "pmo-encyclopedia",
+    "name": "PMO 岗位职责百科",
+    "domain": "项目管理",
+    "description": "把岗位职责、交付物、协作角色与过程指标连接为可检索结构。",
+    "provenance": "演示图谱为重制样例，不含原始业务数据。",
+    "graph": {
+      "nodes": [
+        {"id":"pmo-role","label":"PMO","type":"岗位","description":"提供项目治理、过程支持与组合视角的岗位。","confidence":0.96,"properties":{"层级":"组织职能","关注点":"项目治理"},"evidence_ids":["E-PM-01"]},
+        {"id":"pmo-plan","label":"里程碑跟踪","type":"职责","description":"跟踪项目计划节点与实际进度。","confidence":0.93,"properties":{"频率":"每周"},"evidence_ids":["E-PM-01"]},
+        {"id":"pmo-report","label":"项目周报","type":"交付物","description":"汇总状态、风险、决策和下一步行动。","confidence":0.95,"properties":{"周期":"周"},"evidence_ids":["E-PM-02"]},
+        {"id":"pmo-manager","label":"项目经理","type":"协作角色","description":"负责项目目标、交付计划和资源协调。","confidence":0.94,"properties":{"协作方式":"状态同步"},"evidence_ids":["E-PM-01"]},
+        {"id":"pmo-risk","label":"风险登记册","type":"工具","description":"记录风险描述、影响、应对动作和负责人。","confidence":0.92,"properties":{"字段":"风险 / 影响 / 应对 / 负责人"},"evidence_ids":["E-PM-03"]},
+        {"id":"pmo-var","label":"进度偏差","type":"指标","description":"计划进度与实际进展之间的差异。","confidence":0.88,"properties":{"单位":"天或百分比"},"evidence_ids":["E-PM-02"]},
+        {"id":"pmo-governance","label":"项目治理","type":"过程","description":"通过规范、节奏和决策机制维持项目可控。","confidence":0.9,"properties":{"范围":"组合与单项目"},"evidence_ids":["E-PM-01"]},
+        {"id":"pmo-action","label":"纠偏行动","type":"行动","description":"针对进度或风险偏差落实的调整措施。","confidence":0.87,"properties":{"需要跟踪":"是"},"evidence_ids":["E-PM-03"]}
+      ],
+      "edges": [
+        {"id":"pm-r1","source":"pmo-role","target":"pmo-plan","label":"负责","confidence":0.96,"evidence_ids":["E-PM-01"]},
+        {"id":"pm-r2","source":"pmo-plan","target":"pmo-report","label":"汇总到","confidence":0.93,"evidence_ids":["E-PM-02"]},
+        {"id":"pm-r3","source":"pmo-role","target":"pmo-governance","label":"支持","confidence":0.91,"evidence_ids":["E-PM-01"]},
+        {"id":"pm-r4","source":"pmo-manager","target":"pmo-report","label":"协同提供","confidence":0.9,"evidence_ids":["E-PM-02"]},
+        {"id":"pm-r5","source":"pmo-risk","target":"pmo-governance","label":"支撑","confidence":0.91,"evidence_ids":["E-PM-03"]},
+        {"id":"pm-r6","source":"pmo-report","target":"pmo-var","label":"呈现","confidence":0.9,"evidence_ids":["E-PM-02"]},
+        {"id":"pm-r7","source":"pmo-var","target":"pmo-action","label":"触发","confidence":0.87,"evidence_ids":["E-PM-03"]},
+        {"id":"pm-r8","source":"pmo-action","target":"pmo-manager","label":"分派给","confidence":0.88,"evidence_ids":["E-PM-03"]},
+        {"id":"pm-r9","source":"pmo-risk","target":"pmo-action","label":"记录应对","confidence":0.92,"evidence_ids":["E-PM-03"]}
+      ]
+    },
+    "evidence": [
+      {"id":"E-PM-01","title":"岗位职责摘要","source":"合成演示材料","locator":"岗位说明 01","excerpt":"PMO 支持项目治理，跟踪关键里程碑并协助项目经理识别过程偏差。","method":"本地示例"},
+      {"id":"E-PM-02","title":"状态报告字段","source":"合成演示材料","locator":"周报模板","excerpt":"项目周报汇总里程碑状态、进度偏差、风险事项和待决策问题。","method":"本地示例"},
+      {"id":"E-PM-03","title":"风险与行动跟踪","source":"合成演示材料","locator":"过程说明","excerpt":"风险登记册记录应对责任人；出现进度偏差时应建立纠偏行动并持续跟踪。","method":"本地示例"}
+    ],
+    "quality": {
+      "checks": [
+        {"name":"节点证据绑定","value":"8 / 8","state":"pass","detail":"岗位、职责、交付物和工具均有示例依据。"},
+        {"name":"关系证据绑定","value":"9 / 9","state":"pass","detail":"关系证据 ID 可在案例证据账本中解析。"},
+        {"name":"职责闭环","value":"已连接","state":"pass","detail":"职责关联交付物、指标和行动。"},
+        {"name":"来源核验","value":"待人工复核","state":"review","detail":"示例材料为合成内容，不用于评估真实业务准确率。"}
+      ],
+      "notes": ["历史 Critic 分数是单次模型评审信号，不等同于人工金标准准确率。", "当前画布展示的是为演示重制的子图，不是原始业务数据。"]
+    },
+    "history": {"nodes":13,"edges":22,"critic_score":0.746,"decision":"conditional_pass","label":"项目公开记录中的历史单次运行"}
+  }
+]

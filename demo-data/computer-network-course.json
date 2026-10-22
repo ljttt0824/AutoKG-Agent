@@ -1,0 +1,76 @@
+{
+  "id": "computer-network-course",
+  "name": "计算机网络课程知识图谱",
+  "domain": "计算机网络",
+  "description": "从课程项目构建结果中精选 Chapter 1 的网络架构、数据传输与交换技术关系。",
+  "provenance": "课程项目构建结果精选子图；说明与证据文字已重述，不包含课件或 OCR 原文。",
+  "graph": {
+    "nodes": [
+      {"id":"e0001","label":"计算机网络","type":"课程概念","description":"Computer network；由主机、通信媒介与网络设备互连，并按协议交换数据的系统。","confidence":null,"properties":{"原始实体ID":"e0001","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01","E-CN-02"]},
+      {"id":"e0002","label":"数据传输","type":"课程概念","description":"Data transmission；数据在网络节点之间编码、发送、接收和交付的过程。","confidence":null,"properties":{"原始实体ID":"e0002","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01"]},
+      {"id":"e0003","label":"带宽","type":"课程概念","description":"Bandwidth；链路或信道在单位时间内可承载的数据传输能力，常以 bit/s 表示。","confidence":null,"properties":{"原始实体ID":"e0003","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01"]},
+      {"id":"e0004","label":"时延","type":"课程概念","description":"Delay；数据从发送端到接收端经历的时间，通常由处理、排队、传输和传播等部分构成。","confidence":null,"properties":{"原始实体ID":"e0004","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01"]},
+      {"id":"e0005","label":"吞吐量","type":"课程概念","description":"Throughput；网络在实际运行中单位时间成功交付的数据量。","confidence":null,"properties":{"原始实体ID":"e0005","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01"]},
+      {"id":"e0006","label":"复用","type":"课程概念","description":"Multiplexing；把多个信号或数据流共享到同一通信资源上的技术。","confidence":null,"properties":{"原始实体ID":"e0006","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-01"]},
+      {"id":"e0007","label":"交换","type":"交换技术","description":"Switching；在网络节点间转发数据并选择传输路径的机制。","confidence":null,"properties":{"原始实体ID":"e0007","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-03"]},
+      {"id":"e0008","label":"协议分层","type":"课程概念","description":"Protocol layers；将通信功能划分到相互协作的层次，以约定服务、接口和协议。","confidence":null,"properties":{"原始实体ID":"e0008","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-04"]},
+      {"id":"e0009","label":"服务模型","type":"课程概念","description":"Service models；描述网络层次向上层提供哪些能力以及如何使用这些能力。","confidence":null,"properties":{"原始实体ID":"e0009","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-04"]},
+      {"id":"e0010","label":"互联网","type":"课程概念","description":"Internet；由多个自治网络互连形成、使用共同协议族进行通信的全球网络。","confidence":null,"properties":{"原始实体ID":"e0010","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0011","label":"网络边缘","type":"网络组件","description":"Network edge；靠近终端用户的一侧，包含主机及其接入网络。","confidence":null,"properties":{"原始实体ID":"e0011","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0012","label":"主机","type":"网络组件","description":"Hosts；运行网络应用并通过网络发送、接收数据的端系统。","confidence":null,"properties":{"原始实体ID":"e0012","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0013","label":"接入网络","type":"网络组件","description":"Access network；把端系统连接到更大网络基础设施的网络部分。","confidence":null,"properties":{"原始实体ID":"e0013","原始类型":"other","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0014","label":"物理媒介","type":"物理媒介","description":"Physical media；承载电信号、光信号或无线信号的有线与无线传输媒介。","confidence":null,"properties":{"原始实体ID":"e0014","原始类型":"physical_media","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0015","label":"网络核心","type":"网络组件","description":"Network core；由互连转发设备组成，负责在网络之间传送数据。","confidence":null,"properties":{"原始实体ID":"e0015","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]},
+      {"id":"e0016","label":"分组交换","type":"交换技术","description":"Packet switching；把数据切分为分组，分组经网络转发后在目的端重组。","confidence":null,"properties":{"原始实体ID":"e0016","原始类型":"technology","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-03"]},
+      {"id":"e0017","label":"电路交换","type":"交换技术","description":"Circuit switching；通信期间为端点间建立并保持一条专用传输路径。","confidence":null,"properties":{"原始实体ID":"e0017","原始类型":"technology","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-03"]},
+      {"id":"e0018","label":"互联网结构","type":"课程概念","description":"Internet structure；描述接入网络、网络边缘、网络核心和互连网络之间的组织关系。","confidence":null,"properties":{"原始实体ID":"e0018","原始类型":"concept","章节":"Chapter 1","首次出现页码":2},"evidence_ids":["E-CN-02"]}
+    ],
+    "edges": [
+      {"id":"r0001","source":"e0002","target":"e0001","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0002","source":"e0008","target":"e0001","label":"组成部分","confidence":null,"evidence_ids":["E-CN-04"]},
+      {"id":"r0004","source":"e0002","target":"e0003","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0005","source":"e0002","target":"e0004","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0006","source":"e0005","target":"e0002","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0007","source":"e0006","target":"e0002","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0009","source":"e0004","target":"e0003","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0010","source":"e0003","target":"e0005","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0012","source":"e0008","target":"e0009","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-04"]},
+      {"id":"r0013","source":"e0011","target":"e0010","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0014","source":"e0015","target":"e0010","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0015","source":"e0012","target":"e0011","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0016","source":"e0011","target":"e0013","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0017","source":"e0011","target":"e0014","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0018","source":"e0016","target":"e0015","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-03"]},
+      {"id":"r0019","source":"e0017","target":"e0015","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-03"]},
+      {"id":"r0020","source":"e0016","target":"e0017","label":"相关技术","confidence":null,"evidence_ids":["E-CN-03"]},
+      {"id":"r0021","source":"e0015","target":"e0018","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0022","source":"e0018","target":"e0010","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0025","source":"e0001","target":"e0003","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0026","source":"e0004","target":"e0001","label":"相关概念","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0027","source":"e0005","target":"e0001","label":"学习依赖","confidence":null,"evidence_ids":["E-CN-01"]},
+      {"id":"r0029","source":"e0007","target":"e0001","label":"组成部分","confidence":null,"evidence_ids":["E-CN-03"]},
+      {"id":"r0030","source":"e0001","target":"e0010","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0031","source":"e0011","target":"e0001","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0032","source":"e0015","target":"e0001","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0033","source":"e0001","target":"e0018","label":"组成部分","confidence":null,"evidence_ids":["E-CN-02"]},
+      {"id":"r0665","source":"e0017","target":"e0007","label":"属于交换类型","confidence":null,"evidence_ids":["E-CN-03"]},
+      {"id":"r0667","source":"e0007","target":"e0016","label":"先修关系","confidence":null,"evidence_ids":["E-CN-03"]}
+    ]
+  },
+  "evidence": [
+    {"id":"E-CN-01","title":"数据传输与网络性能","source":"课程图谱结果（重述）","locator":"Chapter 1 · p.2","excerpt":"数据传输、带宽、时延与吞吐量共同描述通信过程及其性能表现。","method":"从构建结果整理；非课件逐字引文"},
+    {"id":"E-CN-02","title":"互联网组成结构","source":"课程图谱结果（重述）","locator":"Chapter 1 · p.2","excerpt":"主机经接入网络连接到网络边缘，网络核心负责互连与转发；这些部分共同构成互联网架构。","method":"从构建结果整理；非课件逐字引文"},
+    {"id":"E-CN-03","title":"交换机制","source":"课程图谱结果（重述）","locator":"Chapter 1 · p.2","excerpt":"分组交换与电路交换体现不同的资源组织和数据转发方式，可用于比较网络交换机制。","method":"从构建结果整理；非课件逐字引文"},
+    {"id":"E-CN-04","title":"分层协议与服务","source":"课程图谱结果（重述）","locator":"Chapter 1 · p.2","excerpt":"协议分层组织通信功能，并通过服务模型描述层间能力与协作边界。","method":"从构建结果整理；非课件逐字引文"}
+  ],
+  "quality": {
+    "checks": [
+      {"name":"实体来源 ID","value":"18 / 18","state":"pass","detail":"展示实体均可对应到课程项目构建结果中的实体 ID。"},
+      {"name":"关系端点完整","value":"29 / 29","state":"pass","detail":"精选关系的起点与终点均能在展示子图中定位。"},
+      {"name":"抽取置信度","value":"未提供","state":"info","detail":"原始课程图谱未记录实体或关系置信度，页面不补造分数。"},
+      {"name":"关系语义复核","value":"待人工复核","state":"review","detail":"自动抽取关系可能有方向或语义偏差；用于教学前应由教师核验。"}
+    ],
+    "notes": ["本页显示 18 个实体、29 条精选关系；课程项目完整输出包含 2,840 个实体、7,172 条关系。", "页面说明与证据摘要经过重述，不是原课件逐字内容；未公开课件、OCR 文本或个人资料。", "图谱由旧版课程流程自动构建，关系边是候选结构，不能直接作为已验证的教学先修顺序。"]
+  },
+  "history": {"nodes":2840,"edges":7172,"critic_score":null,"decision":"待人工复核","label":"课程项目完整构建结果（当前展示为精选子图）"}
+}
