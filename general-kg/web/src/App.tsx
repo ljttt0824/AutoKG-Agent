@@ -11,6 +11,7 @@ import {
   FileText,
   LayoutDashboard,
   LoaderCircle,
+  MessageSquareText,
   Network,
   Plus,
   Search,
@@ -19,16 +20,18 @@ import {
   X,
 } from "lucide-react";
 import { colorForType } from "./components/graphColors";
+import LearningAssistant from "./components/LearningAssistant";
 import { createRun, loadCases, loadModelStatus, pollRun, previewFiles, subscribeRun, testModelConnection } from "./api";
 import type { DemoCase, DemoRun, ExtractionPreview, GraphEdge, GraphNode, ModelStatus, QualityCheck, WorkspaceMode } from "./types";
 
-type View = "graph" | "cases" | "runs" | "quality";
+type View = "graph" | "learning" | "cases" | "runs" | "quality";
 type Selection = { kind: "node" | "edge"; id: string } | null;
 const stages = ["planner", "agentic_search", "worker", "critic", "completed"];
 const GraphCanvas = lazy(() => import("./components/GraphCanvas"));
 
 const navItems: Array<{ id: View; label: string; icon: typeof LayoutDashboard }> = [
   { id: "graph", label: "工作台", icon: LayoutDashboard },
+  { id: "learning", label: "学习助手", icon: MessageSquareText },
   { id: "cases", label: "案例库", icon: BookOpen },
   { id: "runs", label: "运行记录", icon: Activity },
   { id: "quality", label: "质量报告", icon: ShieldCheck },
@@ -236,9 +239,9 @@ export default function App() {
         <div className="page-content">
           <div className="page-heading">
             <div>
-              <div className="eyebrow">{activeCase.id === "computer-network-course" ? "SUBJECT KNOWLEDGE GRAPH / COMPUTER NETWORKS" : "AUTOKG / GENERAL KNOWLEDGE GRAPH"}</div>
-              <h1>{view === "graph" ? activeCase.id === "computer-network-course" ? "计算机网络课程知识图谱" : "知识图谱工作台" : view === "cases" ? "案例库" : view === "runs" ? "运行记录" : "质量报告"}</h1>
-              <p>{view === "graph" ? `${activeCase.name} · ${activeCase.domain}` : view === "cases" ? "项目案例与本地生成结果" : view === "runs" ? "当前会话的模型构建任务" : `${activeCase.name} · 质量检查与来源覆盖`}</p>
+              <div className="eyebrow">{view === "learning" ? "KG-RAG / COMPUTER NETWORKS" : activeCase.id === "computer-network-course" ? "SUBJECT KNOWLEDGE GRAPH / COMPUTER NETWORKS" : "AUTOKG / GENERAL KNOWLEDGE GRAPH"}</div>
+              <h1>{view === "graph" ? activeCase.id === "computer-network-course" ? "计算机网络课程知识图谱" : "知识图谱工作台" : view === "learning" ? "知识图谱学习助手" : view === "cases" ? "案例库" : view === "runs" ? "运行记录" : "质量报告"}</h1>
+              <p>{view === "graph" ? `${activeCase.name} · ${activeCase.domain}` : view === "learning" ? "课程问答溯源与图谱学习路径推荐" : view === "cases" ? "项目案例与本地生成结果" : view === "runs" ? "当前会话的模型构建任务" : `${activeCase.name} · 质量检查与来源覆盖`}</p>
             </div>
             <div className="heading-actions">
               {view === "graph" && <button className="secondary-button" type="button" onClick={exportCase}><ArrowDownToLine size={16} />导出 JSON</button>}
@@ -246,12 +249,12 @@ export default function App() {
             </div>
           </div>
 
-          <div className="summary-strip">
+          {view === "graph" && <div className="summary-strip">
             <Metric icon={<Network size={17} />} label="展示节点" value={activeCase.graph.nodes.length.toString()} tone="teal" />
             <Metric icon={<Activity size={17} />} label="展示关系" value={activeCase.graph.edges.length.toString()} tone="blue" />
             <Metric icon={<FileText size={17} />} label="来源证据" value={activeCase.evidence.length.toString()} tone="amber" />
             <Metric icon={<ShieldCheck size={17} />} label="Critic 自评" value={activeCase.history.critic_score?.toFixed(2) ?? "—"} tone="green" footnote="非人工金标准" />
-          </div>
+          </div>}
 
           {errorMessage && <div className="error-banner" role="alert">{errorMessage}<button type="button" className="icon-button" onClick={() => setErrorMessage("")} aria-label="关闭"><X size={15} /></button></div>}
 
@@ -269,6 +272,7 @@ export default function App() {
             entity={entity}
             entityEvidence={entityEvidence}
           />}
+          {view === "learning" && <LearningAssistant />}
           {view === "cases" && <CaseLibrary cases={cases} selectedCaseId={activeCase.id} onSelect={(id) => { setSelectedCaseId(id); setView("graph"); }} />}
           {view === "quality" && <QualityView caseData={activeCase} />}
           {view === "runs" && <RunHistory runs={runHistory} onOpen={(item) => { setRun(item); setSelectedCaseId(item.case_id); setRunOpen(true); }} />}

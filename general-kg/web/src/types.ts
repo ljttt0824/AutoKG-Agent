@@ -90,3 +90,28 @@ export type ExtractionPreview = {
     preview: string;
   }>;
 };
+
+export type LearningAnswerCase = {
+  id: string;
+  question: string;
+  answer: string;
+  status: "pass" | "partial";
+  statusLabel: string;
+  note: string;
+  pages: number[];
+};
+
+export type LearningPathCase = {
+  id: string;
+  title: string;
+  summary: string;
+  nodes: Array<{ label: string; detail?: string; pages: number[] }>;
+  note: string;
+};
+
+export type LearningExamples = {
+  provenance: string;
+  boundary: string;
+  answers: LearningAnswerCase[];
+  paths: LearningPathCase[];
+};
